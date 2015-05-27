@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/apollo</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <mapping class="com.neu.healthcare.model.Address" />
+        <mapping class="com.neu.healthcare.model.Person" />
+        <mapping class="com.neu.healthcare.model.UserAccount" />
+        <mapping class="com.neu.healthcare.model.Appointment" />
+        <mapping class="com.neu.healthcare.model.Patient" />
+        <mapping class="com.neu.healthcare.model.VitalSigns" />
+        <mapping class="com.neu.healthcare.model.MedicationOrder" />
+        <mapping class="com.neu.healthcare.model.CreditCard" />
+        
+     </session-factory>
+</hibernate-configuration>

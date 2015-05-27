@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	                    http://www.springframework.org/schema/security
+                        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<security:http auto-config="true" use-expressions="true">
+	<!-- <security:intercept-url pattern="/" access="permitAll" />   -->
+	<security:intercept-url pattern="/" access="hasAnyRole('ROLE_ADMIN','ROLE_DOCTOR','ROLE_NURSE','ROLE_PATIENT','ROLE_BILLING')" />   
+	<security:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+    <security:intercept-url pattern="/doctor**" access="hasRole('ROLE_DOCTOR')" />
+    <security:intercept-url pattern="/nurse**" access="hasRole('ROLE_NURSE')" />
+    <security:intercept-url pattern="/patient**" access="hasRole('ROLE_PATIENT')" />
+    <security:intercept-url pattern="/billing**" access="hasRole('ROLE_BILLING')" /> 
+    <security:intercept-url pattern="/change**" access="hasAnyRole('ROLE_DOCTOR','ROLE_NURSE','ROLE_PATIENT','ROLE_BILLING')" />
+    <security:intercept-url pattern="/confirm**" access="hasAnyRole('ROLE_DOCTOR','ROLE_NURSE','ROLE_PATIENT','ROLE_BILLING')" /> 
+    <security:intercept-url pattern="/viewVitalSign" access="hasAnyRole('ROLE_DOCTOR','ROLE_PATIENT')" /> 
+    <security:intercept-url pattern="/view**" access="hasAnyRole('ROLE_DOCTOR','ROLE_NURSE')" /> 
+    <security:intercept-url pattern="/search**" access="hasAnyRole('ROLE_DOCTOR','ROLE_NURSE')" /> 
+        
+    <security:form-login 
+		    login-page="/login" 
+		    default-target-url="/" 
+		    always-use-default-target="true"
+		    authentication-failure-url="/login?auth=fail" 
+			username-parameter="j_username"
+			password-parameter="j_password" />
+       
+    <security:logout logout-url="/logout" logout-success-url="/login?logout_successful=1" />
+        
+    <!-- access denied page -->
+	<security:access-denied-handler error-page="/403" />
+    </security:http>
+    
+    <!-- Select users and user_roles from database -->
+	<security:authentication-manager>
+	  <security:authentication-provider>
+		<security:jdbc-user-service data-source-ref="dataSource"
+		  users-by-username-query=
+		    "select username,password,enabled from useraccount where username=?"
+		  authorities-by-username-query=
+		    "select username, role from useraccount where username=?" />
+	  </security:authentication-provider>
+	</security:authentication-manager>
+	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/apollo" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="userAccountValidator" class="com.neu.healthcare.validator.UserAccountValidator"></bean>
+	<bean id="creditCardValidator" class="com.neu.healthcare.validator.CreditCardValidator"></bean>
+	<bean id="passwordValidator" class="com.neu.healthcare.validator.PasswordValidator"></bean>
+	<bean id="appointmentValidator" class="com.neu.healthcare.validator.AppointmentValidator"></bean>	
+	<bean id="vitalSignsValidator" class="com.neu.healthcare.validator.VitalSignsValidator"></bean>	
+	<bean id="diagnosisValidator" class="com.neu.healthcare.validator.DiagnosisValidator"></bean>	
+	<bean id="fullValidator" class="com.neu.healthcare.validator.FullValidator"></bean>		
+	<bean id="userDao" class="com.neu.healthcare.dao.UserDao" ></bean>
+	<bean id="appointmentDao" class="com.neu.healthcare.dao.AppointmentDao" ></bean>
+	<bean id="patientDao" class="com.neu.healthcare.dao.PatientDao" ></bean>
+	<bean id="fileUploadValidator" class="com.neu.healthcare.validator.FileUploadValidator"></bean> 
+</beans>

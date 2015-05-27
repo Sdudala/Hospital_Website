@@ -1,0 +1,124 @@
+body {
+	background-image: url('../images/hills.jpg');
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	position:relative;
+}
+
+#accountLogin{
+	/* background-color:#1e90ff; */
+}
+
+#stickyHeader{
+	height:50px;
+	 position:fixed; 
+	width:100%;
+	 top:0; 
+	
+}
+
+#logo	{
+	margin-left:10%;
+}
+
+#topbar	{
+	margin-right:10%;
+}
+
+#search	{
+	padding: 3px 3px 3px 3px;
+	margin-bottom:7px;
+}
+
+.login-form {
+	margin: 0 auto;
+	background: #f3f3f3;
+	border: 1px solid #fff;
+}
+
+.info {
+	margin: 0 auto;	
+	background: #f3f3f3;
+	border: 1px solid #fff;
+}
+
+ #h1 {
+	padding: 30px 30px ;
+	letter-spacing: 2px;
+	font-family: serif;
+	font-weight: 300;
+	font-size: 26px;
+	line-height:34px;
+	color: brown;
+	margin-bottom: 10px;
+}
+
+.content {
+	padding: 0 30px 20px 30px;
+}
+
+#input {
+	padding: 5px 15px;
+	font-family: sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	color: #9d9e9e;
+	
+	background: #fff;
+	border-radius: 7px;
+}
+
+.password, .pass-icon {
+	margin-top: 25px;
+}
+
+ #input:hover {
+	background: #dfe9ec;
+	color: #414848;
+}
+
+ #input:focus {
+	background: #dfe9ec;
+	color: #414848;
+}
+
+.footer {
+	padding: 25px 30px 20px 30px;
+	background: #d4dedf;
+	border-top: 1px solid #fff;
+}
+
+#registerButton {
+	padding: 5%;
+	font-family: Bree Serif;
+	font-size: 16.5px;
+	color: #414848;
+	text-decoration: none;
+}
+
+#registerButton:hover {
+	text-decoration : underline;
+	color:darkblue;
+}
+
+.left-footer {
+	padding: 20px;
+	overflow: auto;
+	background: #d4dedf;
+	border-top: 1px solid #fff;
+}
+
+.clear	{
+	clear:both;
+	padding:0;
+	margin:0;
+}
+
+ul.nav li.dropdown:hover  ul.dropdown-menu {
+    display: block;
+}
+
+.centered-table {
+   margin-left: auto;
+   margin-right: auto;
+}

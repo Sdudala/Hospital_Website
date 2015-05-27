@@ -1,0 +1,31 @@
+html, body {
+	height: 100%;
+	padding:30px 0 0px 0;
+	/* background-color:#FDE044; */
+}
+
+footer {
+	color: #00F;
+	background: #222;
+	padding: 17px 0 18px 0;
+	border-top: 1px solid #000;
+	position:fixed;
+	bottom:0px;
+	height:50px;
+	width:100%;
+}
+footer a {
+	color: #00f;
+}
+footer a:hover {
+	color: #00f;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto;
+	height: 100%;
+	margin: 0 auto -63px;
+}
+.push {
+	height: 63px;
+}
